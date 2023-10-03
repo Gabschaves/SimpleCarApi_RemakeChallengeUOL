@@ -1,0 +1,1 @@
+insert into car (chassi_id, model, brand, color, fabrication_year) values (1, "test", "VOLVO", "testColor", "2012/2013");
