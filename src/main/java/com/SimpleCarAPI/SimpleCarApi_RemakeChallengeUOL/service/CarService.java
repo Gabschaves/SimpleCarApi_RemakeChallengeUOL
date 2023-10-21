@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,5 +38,17 @@ public class CarService {
     private Car fetchOrFail(Long id) {
         return carRepository.findById(id).orElseThrow(CarNotFoundException::new);
     }
+    public List<CarResponseDTO> findAll(){
+        List<Car> response = carRepository.findAll();
+        List<CarResponseDTO> carList = new ArrayList<>();
+
+        response.forEach(car -> {
+            carList.add(assembler.toDTO(car));
+        });
+
+        return carList;
+
+    }
 
 }
+
